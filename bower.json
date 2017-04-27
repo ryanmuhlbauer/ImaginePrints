@@ -1,0 +1,16 @@
+{
+  "name": "ImaginePrints",
+  "homepage": "https://github.com/ryanmuhlbauer/ImaginePrints",
+  "authors": [
+    "Christopher Cates <ccates1@ggc.edu>",
+    "Ryan Muhlbauer <rmuhlbau@ggc.edu>"
+  ],
+  "description": "",
+  "main": "lib",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0",
+    "matchHeight": "matchheight#^0.7.2"
+  }
+}
