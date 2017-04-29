@@ -7,7 +7,6 @@ include("connection.php");
   <?php include("head.html"); ?>
   <script type="text/javascript">
     jQuery(document).ready(function($) {
-      var username = document.getElementById("username");
       var email = document.getElementById("email");
       var password = document.getElementById("password");
       var confirmPassword = document.getElementById("confirmPassword");
@@ -15,15 +14,6 @@ include("connection.php");
       var msg = "";
 
       $("#submit").click(function(e) {
-        if(!username.value) {
-          msg = "<p class='text-danger'>Please enter a username for the account!</p>";
-          result.innerHTML = msg;
-          $('html, body').animate({
-            scrollTop: $("#return-msg").offset().top
-          }, 2000);
-          return;
-          e.preventDefault();
-        }
         if(!email.value) {
           msg = "<p class='text-danger'>Please enter a email for the account!</p>";
           result.innerHTML = msg;
@@ -54,7 +44,7 @@ include("connection.php");
         $.ajax({
           type: 'POST',
           url: 'registerAccount.php',
-          data: 'username=' + username.value + '&email=' + email.value + '&password=' + password.value,
+          data: 'email=' + email.value + '&password=' + password.value,
           success: function(data) {
             if(data == "success") {
               window.location.href = "index.php";
@@ -86,10 +76,6 @@ include("connection.php");
 
         </div>
         <form>
-          <div class="form-group">
-            <label for="username"><i class="fa fa-user-o fa-fw"></i> Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="">
-          </div>
           <div class="form-group">
             <label for="email"><i class="fa fa-at fa-fw"></i> Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="">

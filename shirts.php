@@ -22,7 +22,7 @@ include("connection.php");
   }
   ?>
   <div class="container">
-    <?php echo "<a class='btn btn-secondary' href=\"javascript:history.go(-1)\"><i class='fa fa-arrow-circle-o-left fa-fw'></i> GO BACK</a>"; ?>
+    <?php echo "<a class='btn btn-primary' href=\"javascript:history.go(-1)\"><i class='fa fa-arrow-circle-o-left fa-fw'></i> GO BACK</a>"; ?>
     <hr />
     <div class="row">
       <?php

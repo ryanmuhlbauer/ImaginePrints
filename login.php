@@ -7,13 +7,13 @@ include("connection.php");
   <?php include("head.html"); ?>
   <script type="text/javascript">
     jQuery(document).ready(function($) {
-      var username = document.getElementById("username");
+      var email = document.getElementById("email");
       var password = document.getElementById("password");
       var result = document.getElementById("return-msg");
       var msg = "";
       $("#submit").click(function(e) {
-        if(!username.value) {
-          msg = "<p class='text-danger'>Please enter a username!</p>";
+        if(!email.value) {
+          msg = "<p class='text-danger'>Please enter a email!</p>";
           result.innerHTML = msg;
           $('html, body').animate({
             scrollTop: $("#return-msg").offset().top
@@ -67,8 +67,8 @@ include("connection.php");
         </div>
         <form>
           <div class="form-group">
-            <label for="username"><i class="fa fa-user-o fa-fw"></i> Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="">
+            <label for="email"><i class="fa fa-at fa-fw"></i> Email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="">
           </div>
           <div class="form-group">
             <label for="password"><i class="fa fa-lock fa-fw"></i> Password</label>

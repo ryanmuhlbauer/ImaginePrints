@@ -15,6 +15,7 @@ include("connection.php");
   }
   ?>
   <div class="container">
+    <hr />
     <div class="row">
       <div class="col-xs-4">
         <div class="panel panel-default">

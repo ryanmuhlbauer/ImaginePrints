@@ -27,32 +27,6 @@ include("connection.php");
     var amount = document.getElementById("amount");
     amount.value = amount.value * select.value;
   }
-  $(document).ready(function () {
-    $("#ccnumber").keyup(function() {
-      $("#ccnumber").val(this.value.match(/[0-9]*/));
-    });
-
-    $("#ccv").keyup(function() {
-      $("#ccv").val(this.value.match(/[0-9]*/));
-    });
-
-    $("#submit").click(function(e) {
-      var fname = document.getElementById("fname").value;
-      var lname = document.getElementById("lname").value;
-      var zip = document.getElementById("zip").value;
-      var state = document.getElementById("state").value;
-      var city = document.getElementById("city").value;
-      var ccnumber = document.getElementById("ccnumber").value;
-      var expDate = document.getElementById("expDate").value;
-      var ccv = document.getElementById("ccv").value;
-      var errorMsg = document.getElementById("result-msg");
-
-      if(!fname) {
-        msg = 'Please enter your first name'
-      }
-    });
-
-  });
 
   </script>
 
@@ -78,9 +52,9 @@ include("connection.php");
     }
     ?>
     <input type="hidden" id="productPath" value="<?php echo $productpath; ?>">
-    <?php echo "<a class='btn btn-secondary' href=\"javascript:history.go(-1)\"><i class='fa fa-arrow-circle-o-left fa-fw'></i> GO BACK</a>"; ?>
+    <?php echo "<a class='btn btn-primary' href=\"javascript:history.go(-1)\"><i class='fa fa-arrow-circle-o-left fa-fw'></i> GO BACK</a>"; ?>
     <hr />
-    <div class="panel panel-primary bg-faded">
+    <div class="panel panel-primary bg-faded" id="beforePurchase">
       <div class="panel-heading">
         Product Customization
       </div>
@@ -130,7 +104,7 @@ include("connection.php");
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="numberOfShirts">Number of Shirts</label>
-                <input type="number" id="numberOfShirts" name="" class="form-control" value="1">
+                <input type="number" id="numberOfShirts" name="numberOfShirts" class="form-control" value="1" min="1">
               </div>
             </div>
             <div class="col-sm-6">
@@ -140,101 +114,18 @@ include("connection.php");
                   <span class="input-group-addon" style="padding: 0px;"><i class="fa fa-usd fa-fw"></i></span>
                   <input type="text" id="amount" name="amount" class="form-control" style="border:0px; font-size: 2.5rem; background-color: #f5f5f5;" value="<?php echo $productprice; ?>" disabled/>
                 </div>
-
               </div>
-
             </div>
           </div>
         </div>
-        <div class="well">
-          <form class="form-horizontal" data-toggle="validator" role="form" id="info-form">
-            <h4>Shipping Address:</h4>
-            <hr />
-            <div class="form-group">
-              <label for="fname" class="col-sm-2 control-label">First Name</label>
-              <div class="col-sm-10">
-                <input type="fname" class="form-control"  id="fname" placeholder="First Name" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="lname" class="col-sm-2 control-label">Last Name</label>
-              <div class="col-sm-10">
-                <input type="lname" class="form-control" id="lname" placeholder="Last Name" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="address" class="col-sm-2 control-label">Address</label>
-              <div class="col-sm-10">
-                <input type="address" class="form-control" id="address" placeholder="Address" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="zip" class="col-sm-2 control-label">ZIP</label>
-              <div class="col-sm-10">
-                <input type="number" class="form-control" id="zip" placeholder="ZIP" data-maxlength="5" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="state" class="col-sm-2 control-label">State</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="state" placeholder="State" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="city" class="col-sm-2 control-label">City</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="city" placeholder="City" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-          </form>
-          <form class="form-horizontal" data-toggle="validator" role="form" id="payment-form">
-            <h4>Payment Information:</h4>
-            <hr />
-            <div class="form-group">
-              <label for="ccnumber" class="col-md-2 control-label">Credit Card Number</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" id="ccnumber" name="ccnumber" placeholder="Credit Card Number" data-maxlength="16">
-              </div>
-
-            </div>
-            <div class="form-group">
-              <label for="expDate" class="col-md-2 control-label">Expiration Date</label>
-              <div class="col-md-10">
-                <input type="number" class="form-control" id="expDate" data-maxlength="5" placeholder="MM/YY" required>
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="ccv" class="col-md-2 control-label">Security Code</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" id="ccv" name="ccv" placeholder="CCV" data-maxlength="3">
-              </div>
-              <div class="help-block with-errors text-center">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" id="submit" class="btn btn-primary">Submit Order</button>
-              </div>
-            </div>
-          </form>
-        </div>
-
       </div>
-
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+            <button class="btn btn-block btn-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
