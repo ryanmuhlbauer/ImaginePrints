@@ -11,11 +11,21 @@ include("connection.php");
   <script type="text/javascript">
   var img;
   var msg;
+  var graphic;
+  var select;
+  var amount;
+  var fixedAmount;
   var isDefault = true;
-  var fileUploadUrl;
+  var numProductsChanged = false;
 
   function upload(path) {
-    fileUploadUrl = path;
+    select = document.getElementById("numberOfShirts");
+    amount = document.getElementById("amount");
+    fixedAmount = document.getElementById("fixedAmount").value;
+    graphic = path;
+    document.getElementById("hasUploaded").classList.remove("hidden");
+    document.getElementById("uploadedImg").src = graphic;
+    amount.value = (fixedAmount * select.value) + (10 * select.value);
   }
   function changeImage(path) {
     isDefault = false;
@@ -23,20 +33,75 @@ include("connection.php");
     img.src = path.toString();
   }
   function updateTotal() {
-    var select = document.getElementById("numberOfShirts");
-    var amount = document.getElementById("amount");
-    amount.value = amount.value * select.value;
-  }
+    numProductsChanged = true;
+    select = document.getElementById("numberOfShirts");
+    amount = document.getElementById("amount");
+    fixedAmount = document.getElementById("fixedAmount").value;
 
+    if(graphic) {
+      amount.value = (fixedAmount * select.value) + (10 * select.value);
+    } else {
+      amount.value = fixedAmount * select.value;
+    }
+  }
+  $(document).ready(function() {
+
+    $("#cartBtn").click(function(e) {
+      fixedAmount = document.getElementById("fixedAmount").value;
+      select = document.getElementById("numberOfShirts").value;
+      var productName = document.getElementById("productName").value;
+      var productDesc = document.getElementById("productDesc").value;
+      var productAmount = fixedAmount;
+
+      if(numProductsChanged === false) {
+        if(graphic) {
+          var productTotal = (fixedAmount * select) + (10 * select);
+          var numProducts = select;
+        } else {
+          var productTotal = fixedAmount * select;
+          var numProducts = select;
+        }
+      } else {
+        var productTotal = amount.value;
+        var numProducts = select;
+      }
+
+      if(isDefault === true) {
+        var productImg = document.getElementById("productImg").src;
+      } else {
+        var productImg = img.src;
+      }
+      console.log(numProducts);
+
+      var errorMsg = document.getElementById("result-msg");
+      $.ajax({
+        type: 'POST',
+        url: 'addToCart.php',
+        data: 'productName=' + productName + '&productDesc=' + productDesc + '&productId=' + productId
+          + '&productAmount=' + productAmount + '&productTotal=' + productTotal + '&numProducts=' + numProducts + '&productImg=' + productImg
+          + '&graphic=' + graphic,
+        error: function(xhr, status, error) {
+          console.log(error);
+          console.log(status);
+          console.log(xhr);
+        },
+        success: function(data) {
+          window.alert("Item has been added to your cart!");
+          window.location.href = "products.php";
+        }
+      });
+
+    });
+  });
   </script>
 
 </head>
 <body>
   <?php
-  if(empty($_SESSION['username'])) {
-    include("unauthorized-nav.html");
+  if(empty($_SESSION['email'])) {
+    include("unauthorized-nav.php");
   } else {
-    include("authorized-nav.html");
+    include("authorized-nav.php");
   }
   ?>
   <div class="container">
@@ -59,12 +124,18 @@ include("connection.php");
         Product Customization
       </div>
       <div class="panel-body">
+        <div id="result-msg">
+
+        </div>
         <div class="row" id="viewShirt">
           <div class="col-md-4">
             <div class="thumbnail" style="border: 0px;">
               <img src="<?php echo $productpath; ?>" class="img-rounded" id="productImg">
             </div>
-
+            <input type="hidden" id="productName" value="<?php echo $productname; ?>" />
+            <input type="hidden" id="productDesc" value="<?php echo $productdescription; ?>" />
+            <input type="hidden" id="productId" value="<?php echo $productid; ?>" />
+            <input type="hidden" id="productName" value="<?php echo $productName; ?>" />
           </div>
           <div class="col-md-8">
             <div class="well">
@@ -98,21 +169,36 @@ include("connection.php");
             </div>
           </div>
         </div>
+        <hr />
+        <div class="hidden" id="hasUploaded">
+          <div class="row">
+            <div class="text-center">
+              <h4>Uploaded Image</h4>
+              <img src="" id="uploadedImg" class="img-thumbnail img-cart" />
+            </div>
+          </div>
+        </div>
+        <hr />
+
 
         <div class="well" style="margin-top:25px;">
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="numberOfShirts">Number of Shirts</label>
-                <input type="number" id="numberOfShirts" name="numberOfShirts" class="form-control" value="1" min="1">
+                <input type="number" id="numberOfShirts" name="numberOfShirts" class="form-control" onchange="updateTotal()" value="1" min="1">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="numberOfShirts">Order Amount</label>
+
                 <div class="input-group">
                   <span class="input-group-addon" style="padding: 0px;"><i class="fa fa-usd fa-fw"></i></span>
+
                   <input type="text" id="amount" name="amount" class="form-control" style="border:0px; font-size: 2.5rem; background-color: #f5f5f5;" value="<?php echo $productprice; ?>" disabled/>
+
+                  <input type="hidden" id="fixedAmount" value="<?php echo $productprice; ?>" />
                 </div>
               </div>
             </div>
@@ -122,7 +208,7 @@ include("connection.php");
       <div class="panel-footer">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
-            <button class="btn btn-block btn-primary">Add to Cart</button>
+            <button class="btn btn-block btn-primary" id="cartBtn"><i class="fa fa-shopping-cart fa-fw"></i> Add to Cart</button>
           </div>
         </div>
       </div>

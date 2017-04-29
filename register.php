@@ -64,7 +64,7 @@ include("connection.php");
   </script>
 </head>
 <body>
-  <?php include("unauthorized-nav.html"); ?>
+  <?php include("unauthorized-nav.php"); ?>
 
   <div class="container">
     <div class="panel panel-default authorize-panel" >

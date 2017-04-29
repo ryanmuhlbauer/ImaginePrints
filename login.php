@@ -33,11 +33,10 @@ include("connection.php");
         $.ajax({
           type: 'POST',
           url: 'loginAccount.php',
-          data: 'username=' + username.value + '&password=' + password.value,
+          data: 'email=' + email.value + '&password=' + password.value,
           success: function(data) {
-
             if(data == "error") {
-              msg = "<p class='text-danger'>Invalid username or password!</p>";
+              msg = "<p class='text-danger'>Invalid email or password!</p>";
               result.innerHTML = msg;
               $('html, body').animate({
                 scrollTop: $("#return-msg").offset().top
@@ -54,7 +53,7 @@ include("connection.php");
   </script>
 </head>
 <body>
-  <?php include("unauthorized-nav.html"); ?>
+  <?php include("unauthorized-nav.php"); ?>
 
   <div class="container">
     <div class="panel panel-default authorize-panel" >

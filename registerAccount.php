@@ -9,7 +9,7 @@
 
     $sql = mysqli_query($dbc, "INSERT INTO Accounts (`email`, `password`) VALUES ('".$email."', '".$password."');");
     $_SESSION['email'] = $email;
-    $_SESSION['cartItems'] = 0;
+    $_SESSION['cartItems'] = array();
     echo "success";
   } else {
     echo "error";

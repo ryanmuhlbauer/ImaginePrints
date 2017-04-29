@@ -76,7 +76,7 @@ include("connection.php");
                 $("#payment-form").validator('destroy');
               } else {
                 msg = "<p class='text-danger'>Something went wrong!</p>";
-                result.innerHTML = msg;
+                errorMsg.innerHTML = msg;
                 $('html, body').animate({
                   scrollTop: $("#return-msg").offset().top
                 }, 2000);
@@ -93,10 +93,10 @@ include("connection.php");
 </head>
 <body>
   <?php
-  if(empty($_SESSION['username'])) {
-    include("unauthorized-nav.html");
+  if(empty($_SESSION['email'])) {
+    include("unauthorized-nav.php");
   } else {
-    include("authorized-nav.html");
+    include("authorized-nav.php");
   }
   ?>
 
@@ -104,13 +104,38 @@ include("connection.php");
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
+          <th class="text-center" style="width: ">Product</th>
+          <th class="text-center">Details</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Total</th>
         </tr>
       </thead>
       <tbody>
+        <?php
+        if(isset($_SESSION['cartItems'])) {
+          foreach ($_SESSION['cartItems'] as $arr) {
+            foreach ($arr as $index=>$value) {
+              echo '<tr>';
+              $index = 0;
+              foreach ($value as $k=>$v) {
+                $index++;
+                if($index == 6) {
+                  echo '<td class="text-center" style="vertical-align: middle;">
+                  <img class="img-thumbnail img-cart" src='.$v.' />
+                  </td>';
+                } else {
+                  echo '<td class="text-center" style="vertical-align: middle;">
+                  '.$v.'
+                  </td>';
+                }
+
+              }
+              echo '</tr>';
+            }
+          }
+        }
+        ?>
         <tr>
           <td>
             <img src="" class="img-thumbnail img-cart" />

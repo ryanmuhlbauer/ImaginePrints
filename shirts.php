@@ -15,10 +15,10 @@ include("connection.php");
 </head>
 <body>
   <?php
-  if(empty($_SESSION['username'])) {
-    include("unauthorized-nav.html");
+  if(empty($_SESSION['email'])) {
+    include("unauthorized-nav.php");
   } else {
-    include("authorized-nav.html");
+    include("authorized-nav.php");
   }
   ?>
   <div class="container">

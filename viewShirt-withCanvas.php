@@ -76,7 +76,7 @@ include("connection.php");
 </head>
 <body>
   <?php
-  if(empty($_SESSION['username'])) {
+  if(empty($_SESSION['email'])) {
     include("unauthorized-nav.html");
   } else {
     include("authorized-nav.html");
