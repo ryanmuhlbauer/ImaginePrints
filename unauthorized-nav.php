@@ -24,9 +24,8 @@ if(!isset($_SESSION))
           <li>
             <a href="products.php">All</a>
           </li>
-          <li><a href="#">T-Shirts</a></li>
-          <li><a href="#">Sweatshirts</a></li>
-          <li><a href="#">Womens</a></li>
+          <li><a href="shirts.php">T-Shirts</a></li>
+          <li><a href="sweatshirts.php">Sweatshirts</a></li>
         </ul>
         </li>
         <li><a href="contact.html">Contact Us</a></li>

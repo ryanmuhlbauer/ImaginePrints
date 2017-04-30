@@ -15,41 +15,28 @@ include("connection.php");
   }
   ?>
   <div class="container">
-    <?php var_dump($_SESSION); ?>
     <hr />
     <div class="row">
-      <div class="col-xs-4">
+      <div class="col-xs-6">
         <div class="panel panel-default">
           <div class="thumbnail bg-faded">
             <img src="img/categories/shirts.jpg" class="img-rounded" alt="...">
             <div class="caption text-center">
               <h3 class="h3">T-Shirts</h3>
-              <p>...</p>
+              <p>Gildan G830, Fruit of the Loom 3931, Gildan G240</p>
               <p><a href="shirts.php" class="btn btn-primary" role="button">Go</a></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-6">
         <div class="panel panel-default">
           <div class="thumbnail bg-faded">
             <img src="img/categories/sweatshirts.jpg" class="img-rounded" alt="...">
             <div class="caption text-center">
               <h3 class="h3">Sweatshirts</h3>
-              <p>...</p>
+              <p>Gildan G180, Gildan G185, Jerzees 993</p>
               <p><a href="sweatshirts.php" class="btn btn-primary" role="button">Go</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <div class="panel panel-default">
-          <div class="thumbnail bg-faded">
-            <img src="img/categories/women-shirts.jpg" class="img-rounded" alt="...">
-            <div class="caption text-center">
-              <h3 class="h3">Womens Shirts</h3>
-              <p>...</p>
-              <p><a href="womens.php" class="btn btn-primary" role="button">Go</a></p>
             </div>
           </div>
         </div>
