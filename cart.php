@@ -11,119 +11,120 @@ include("connection.php");
   <script type="text/javascript">
   var numProductsInCart = 0;
   $(document).ready(function () {
-    var zip = document.getElementById("zip");
-    zip.oninput = function() {
-      if(this.value.length > 5) {
-        this.value = this.value.slice(0,5);
-      }
-    }
-
-    var ccnumber = document.getElementById("ccnumber");
-    ccnumber.oninput = function() {
-      if(this.value.length > 16) {
-        this.value = this.value.slice(0,16);
-      }
-    }
-
-    var expDate = document.getElementById("expDate");
-    expDate.oninput = function() {
-      if(this.value.length > 5) {
-        this.value = this.value.slice(0,5);
-      }
-    }
-
-    var ccv = document.getElementById("ccv");
-    ccv.oninput = function() {
-      if(this.value.length > 3) {
-        this.value = this.value.slice(0,3);
-      }
-    }
-    $("#ccnumber").keyup(function() {
-      $("#ccnumber").val(this.value.match(/[0-9]*/));
-    });
-
-    $("#ccv").keyup(function() {
-
-      $("#ccv").val(this.value.match(/[0-9]*/));
-    });
-
-    $("#submit").click(function(e) {
-      var email = document.getElementById("email").value;
-      var fname = document.getElementById("fname").value;
-      var lname = document.getElementById("lname").value;
-      var zip = document.getElementById("zip").value;
-      var state = document.getElementById("state").value;
-      var city = document.getElementById("city").value;
-      var ccnumber = document.getElementById("ccnumber").value;
-      var expDate = document.getElementById("expDate").value;
-      var re = /^(?:0?[1-9]|1[0-2]) *\/ *[1-9][0-9]$/;
-      if(!expDate.match(re)){
-        window.alert("Expire date format is not correct!");
-        return
-        e.preventDefault();
-      }
-      var ccv = document.getElementById("ccv").value;
-
-      var errorMsg = document.getElementById("result-msg");
-
-      if(!email || !fname || !lname || !zip || !state || !city || !ccnumber || !expDate ||
-        !ccv) {
-          window.alert("You have empty fields that are required!");
-          $("#information-form").validator('validate');
-          $("#payment-form").validator('validate');
-          e.preventDefault();
-          return;
+      var zip = document.getElementById("zip");
+      zip.oninput = function() {
+        if(this.value.length > 5) {
+          this.value = this.value.slice(0,5);
         }
-        else if(!expDate.match(/(0[1-9]|1[0-2])[/][0-9]{2}/)){
+      }
+
+      var ccnumber = document.getElementById("ccnumber");
+      ccnumber.oninput = function() {
+        if(this.value.length > 16) {
+          this.value = this.value.slice(0,16);
+        }
+      }
+
+      var expDate = document.getElementById("expDate");
+      expDate.oninput = function() {
+        if(this.value.length > 5) {
+          this.value = this.value.slice(0,5);
+        }
+      }
+
+      var ccv = document.getElementById("ccv");
+      ccv.oninput = function() {
+        if(this.value.length > 3) {
+          this.value = this.value.slice(0,3);
+        }
+      }
+      $("#ccnumber").keyup(function() {
+        $("#ccnumber").val(this.value.match(/[0-9]*/));
+      });
+
+      $("#ccv").keyup(function() {
+
+        $("#ccv").val(this.value.match(/[0-9]*/));
+      });
+
+      $("#submit").click(function(e) {
+        var email = document.getElementById("email").value;
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var zip = document.getElementById("zip").value;
+        var state = document.getElementById("state").value;
+        var city = document.getElementById("city").value;
+        var ccnumber = document.getElementById("ccnumber").value;
+        var expDate = document.getElementById("expDate").value;
+        var re = /^(?:0?[1-9]|1[0-2]) *\/ *[1-9][0-9]$/;
+        if(!expDate.match(re)){
           window.alert("Expire date format is not correct!");
           return
           e.preventDefault();
         }
-        else {
-          for(var i = 1; i <= numProductsInCart; i++) {
-            var getid = "numProducts" + i;
-            var temp = document.getElementById(getid.toString());
-            var numProducts = temp.value;
+        var ccv = document.getElementById("ccv").value;
 
-            var getid2 = "amount" + i;
-            var temp2 = document.getElementById(getid2.toString());
-            var amount = temp2.value;
+        var errorMsg = document.getElementById("result-msg");
 
-            var getid3 = "productName" + i;
-            var temp3 = document.getElementById(getid3.toString());
-            var productName = temp3.value;
-
-            var getid4 = "graphic" + i;
-            var temp4 = document.getElementById(getid4.toString());
-            var graphic = temp4.value;
-
-            console.log(email);
-
-            if(graphic !== 'undefined') {
-              $.ajax({
-                type: 'POST',
-                url: 'submitOrder.php',
-                data: 'email=' + email + '&fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
-                  '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
-                  '&numItems=' + numProducts + '&amount=' + amount + '&productName=' + productName + '&graphic=' + graphic,
-                success: function(data) {
-                }
-              });
-            } else {
-              $.ajax({
-                type: 'POST',
-                url: 'submitOrder.php',
-                data: 'email=' + email + '&fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
-                  '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
-                  '&numItems=' + numProducts + '&amount=' + amount + '&productName=' + productName,
-                success: function(data) {
-                }
-              });
-            }
+        if(!email || !fname || !lname || !zip || !state || !city || !ccnumber || !expDate ||
+          !ccv) {
+            window.alert("You have empty fields that are required!");
+            $("#information-form").validator('validate');
+            $("#payment-form").validator('validate');
+            e.preventDefault();
+            return;
           }
-          window.location.href="clearCart.php";
-        }
-    });
+          else if(!expDate.match(/(0[1-9]|1[0-2])[/][0-9]{2}/)){
+            window.alert("Expire date format is not correct!");
+            return
+            e.preventDefault();
+          }
+          else {
+            for(var i = 1; i <= numProductsInCart; i++) {
+              var getid = "numProducts" + i;
+              var temp = document.getElementById(getid.toString());
+              var numProducts = temp.value;
+
+              var getid2 = "amount" + i;
+              var temp2 = document.getElementById(getid2.toString());
+              var amount = temp2.value;
+
+              var getid3 = "productName" + i;
+              var temp3 = document.getElementById(getid3.toString());
+              var productName = temp3.value;
+
+              var getid4 = "graphic" + i;
+              var temp4 = document.getElementById(getid4.toString());
+              var graphic = temp4.value;
+
+              console.log(email);
+
+              if(graphic !== 'undefined') {
+                $.ajax({
+                  type: 'POST',
+                  url: 'submitOrder.php',
+                  data: 'email=' + email + '&fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
+                    '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
+                    '&numItems=' + numProducts + '&amount=' + amount + '&productName=' + productName + '&graphic=' + graphic,
+                  success: function(data) {
+                  }
+                });
+              } else {
+                $.ajax({
+                  type: 'POST',
+                  url: 'submitOrder.php',
+                  data: 'email=' + email + '&fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
+                    '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
+                    '&numItems=' + numProducts + '&amount=' + amount + '&productName=' + productName,
+                  success: function(data) {
+                  }
+                });
+              }
+            }
+            window.location.href="clearCart.php";
+          }
+      });
+
   });
 
   </script>
@@ -143,6 +144,9 @@ include("connection.php");
         Your Shopping Cart <i class="fa fa-shopping-cart fa-fw"></i>
       </div>
       <div class="panel-body">
+        <?php
+          if(empty($_SESSION['cartItems']) == 0) {
+        ?>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -208,14 +212,26 @@ include("connection.php");
             ?>
           </tbody>
         </table>
+        <?php
+      } else {
+        echo '<div class="text-center">
+        <h4>No items in your shopping cart yet!</h4>
+        </div>';
+      }
+        ?>
       </div>
+      <?php
+        if(empty($_SESSION['cartItems']) == 0) {
+      ?>
       <div class="panel-footer">
         <div class="text-center">
           <h4>Order Total: $<?php echo $total_amount; ?>.00</h4>
         </div>
       </div>
+      <?php
+    }
+    ?>
     </div>
-
     <div class="well">
       <?php
         if(!isset($_SESSION['email'])) {
@@ -345,7 +361,7 @@ include("connection.php");
         <hr />
         <div class="col-xs-8 col-xs-offset-2 text-center">
           <?php
-            if(isset($_SESSION['email'])) {
+            if(isset($_SESSION['email']) && empty($_SESSION['cartItems']) == 0) {
               echo '<button type="button" id="submit" class="btn btn-primary btn-block">Submit Order</button>';
             } else {
               echo '<button type="button" id="submit" class="btn btn-primary btn-block" disabled>Submit Order</button>';

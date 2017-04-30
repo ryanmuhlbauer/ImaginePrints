@@ -27,12 +27,12 @@ include("connection.php");
         <table class="table table-hover">
           <thead>
             <tr>
-              <th class="text-center" style="width: ">Product</th>
+              <th class="text-center" style="width: ">Product Name</th>
               <th class="text-center">Quantity</th>
               <th class="text-center">Price</th>
               <th class="text-center">Total</th>
-              <th></th>
-              <th></th>
+              <th class="text-center">Product</th>
+              <th class="text-center">Graphic</th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +49,6 @@ include("connection.php");
                   $product_img = $row['path'];
                   $product_price = $row['price'];
                   $graphic = $row['graphic'];
-                  echo $graphic;
                   if(!isset($graphic)) {
                     echo '<tr>
                     <td class="text-center" style="vertical-align: middle;">
