@@ -4,7 +4,9 @@ include("connection.php");
 ?>
 <html>
 <head>
-  <?php include("head.html"); ?>
+  <?php
+  include("head.html");
+  ?>
   <script type="text/javascript">
   $(document).ready(function () {
     var zip = document.getElementById("zip");
@@ -101,57 +103,67 @@ include("connection.php");
   ?>
 
   <div class="container">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th class="text-center" style="width: ">Product</th>
-          <th class="text-center">Details</th>
-          <th class="text-center">Quantity</th>
-          <th class="text-center">Price</th>
-          <th class="text-center">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        if(isset($_SESSION['cartItems'])) {
-          foreach ($_SESSION['cartItems'] as $arr) {
-            foreach ($arr as $index=>$value) {
-              echo '<tr>';
-              $index = 0;
-              foreach ($value as $k=>$v) {
-                $index++;
-                if($index == 6) {
-                  echo '<td class="text-center" style="vertical-align: middle;">
-                  <img class="img-thumbnail img-cart" src='.$v.' />
-                  </td>';
-                } else {
-                  echo '<td class="text-center" style="vertical-align: middle;">
-                  '.$v.'
-                  </td>';
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Your Shopping Cart <i class="fa fa-shopping-cart fa-fw"></i>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-center" style="width: ">Product</th>
+              <th class="text-center">Details</th>
+              <th class="text-center">Quantity</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            if(isset($_SESSION['cartItems'])) {
+              foreach ($_SESSION['cartItems'] as $arr) {
+                foreach ($arr as $index=>$value) {
+                  echo '<tr>';
+                  $index = 0;
+                  foreach ($value as $k=>$v) {
+                    $index++;
+                    if($index == 3) {
+                      echo '<td class="text-center" style="vertical-align: middle;">
+                      <input type="number" class="form-control text-center" value="'.$v.'" />
+                      </td>';
+
+                    }
+                    else if($index == 6) {
+                      echo '<td class="text-center" style="vertical-align: middle;">
+                      <img class="img-thumbnail img-cart" src='.$v.' />
+                      </td>';
+                    }
+                    else if($index == 7 && $v !== 'undefined') {
+                      echo '<td class="text-center" style="vertical-align: middle;">
+                      <img class="img-thumbnail img-cart" src='.$v.' />
+                      </td>';
+                    }
+                    else if($index == 7 && $v == 'undefined') {
+                      echo '<td class="text-center" style="vertical-align: middle;">
+                      No Graphic Added
+                      </td>';
+                    }
+                    else {
+                      echo '<td class="text-center" style="vertical-align: middle;">
+                      '.$v.'
+                      </td>';
+                    }
+                  }
+                  echo '</tr>';
                 }
-
               }
-              echo '</tr>';
             }
-          }
-        }
-        ?>
-        <tr>
-          <td>
-            <img src="" class="img-thumbnail img-cart" />
-          </td>
-          <td>
-            <input type="number" class="form-control" id="quantity" />
-          </td>
-          <td>
+            ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-          </td>
-          <td>
-
-          </td>
-        </tr>
-      </tbody>
-    </table>
     <div class="well">
       <form class="form-horizontal" data-toggle="validator" role="form" id="information-form">
         <h4>Shipping Information:</h4>

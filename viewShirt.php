@@ -71,8 +71,8 @@ include("connection.php");
       } else {
         var productImg = img.src;
       }
-      console.log(numProducts);
 
+      console.log(graphic);
       var errorMsg = document.getElementById("result-msg");
       $.ajax({
         type: 'POST',

@@ -9,7 +9,7 @@
     $product_amount = $_POST['productAmount'];
     $num_products = $_POST['numProducts'];
     $product_img = $_POST['productImg'];
-    if(empty($_POST['graphic'])) {
+    if(!empty($_POST['graphic'])) {
       $graphic = $_POST['graphic'];
     } else {
       $graphic = "";
