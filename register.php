@@ -5,6 +5,8 @@ include("connection.php");
 <html>
 <head>
   <?php include("head.html"); ?>
+  <script type="text/javascript" src="lib/bootstrap-validator/dist/validator.min.js"></script>
+
   <script type="text/javascript">
     jQuery(document).ready(function($) {
       var email = document.getElementById("email");
@@ -73,7 +75,6 @@ include("connection.php");
       </div>
       <div class="panel-body">
         <div id="return-msg" class="text-center" style="margin-bottom: 10px;">
-
         </div>
         <form>
           <div class="form-group">

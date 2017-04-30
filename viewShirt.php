@@ -7,7 +7,6 @@ include("connection.php");
   <?php include("head.html"); ?>
   <script type="text/javascript" src="js/fabric.min.js"></script>
   <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-validator/dist/validator.min.js"></script>
   <script type="text/javascript">
   var img;
   var msg;

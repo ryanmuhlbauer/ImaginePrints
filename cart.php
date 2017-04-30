@@ -7,7 +7,9 @@ include("connection.php");
   <?php
   include("head.html");
   ?>
+  <script type="text/javascript" src="lib/bootstrap-validator/dist/validator.min.js"></script>
   <script type="text/javascript">
+  var numProductsInCart = 0;
   $(document).ready(function () {
     var zip = document.getElementById("zip");
     zip.oninput = function() {
@@ -31,7 +33,7 @@ include("connection.php");
     }
 
     var ccv = document.getElementById("ccv");
-    ccnumber.oninput = function() {
+    ccv.oninput = function() {
       if(this.value.length > 3) {
         this.value = this.value.slice(0,3);
       }
@@ -41,11 +43,12 @@ include("connection.php");
     });
 
     $("#ccv").keyup(function() {
+
       $("#ccv").val(this.value.match(/[0-9]*/));
     });
 
-
     $("#submit").click(function(e) {
+      var email = document.getElementById("email").value;
       var fname = document.getElementById("fname").value;
       var lname = document.getElementById("lname").value;
       var zip = document.getElementById("zip").value;
@@ -53,40 +56,72 @@ include("connection.php");
       var city = document.getElementById("city").value;
       var ccnumber = document.getElementById("ccnumber").value;
       var expDate = document.getElementById("expDate").value;
+      var re = /^(?:0?[1-9]|1[0-2]) *\/ *[1-9][0-9]$/;
+      if(!expDate.match(re)){
+        window.alert("Expire date format is not correct!");
+        return
+        e.preventDefault();
+      }
       var ccv = document.getElementById("ccv").value;
-      var numberOfShirts = document.getElementById("numberOfShirts").value;
-      var amount = document.getElementById("amount").value;
+
       var errorMsg = document.getElementById("result-msg");
 
-      if(!fname || !lname || !zip || !state || !city || !ccnumber || !expDate ||
+      if(!email || !fname || !lname || !zip || !state || !city || !ccnumber || !expDate ||
         !ccv) {
           window.alert("You have empty fields that are required!");
           $("#information-form").validator('validate');
           $("#payment-form").validator('validate');
           e.preventDefault();
           return;
-        } else {
-          $.ajax({
-            type: 'POST',
-            url: 'submitOrder.php',
-            data: 'fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
-              '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
-              '&numItems=' + numberOfShirts + '&amount=' + amount + '&img=' + fileUploadUrl,
-            success: function(data) {
-              if(data == "success") {
-                $("#information-form").validator('destroy');
-                $("#payment-form").validator('destroy');
-              } else {
-                msg = "<p class='text-danger'>Something went wrong!</p>";
-                errorMsg.innerHTML = msg;
-                $('html, body').animate({
-                  scrollTop: $("#return-msg").offset().top
-                }, 2000);
-                return;
-                e.preventDefault();
-              }
+        }
+        else if(!expDate.match(/(0[1-9]|1[0-2])[/][0-9]{2}/)){
+          window.alert("Expire date format is not correct!");
+          return
+          e.preventDefault();
+        }
+        else {
+          for(var i = 1; i <= numProductsInCart; i++) {
+            var getid = "numProducts" + i;
+            var temp = document.getElementById(getid.toString());
+            var numProducts = temp.value;
+
+            var getid2 = "amount" + i;
+            var temp2 = document.getElementById(getid2.toString());
+            var amount = temp2.value;
+
+            var getid3 = "productName" + i;
+            var temp3 = document.getElementById(getid3.toString());
+            var productName = temp3.value;
+
+            var getid4 = "graphic" + i;
+            var temp4 = document.getElementById(getid4.toString());
+            var graphic = temp4.value;
+
+            console.log(email);
+
+            if(graphic !== 'undefined') {
+              $.ajax({
+                type: 'POST',
+                url: 'submitOrder.php',
+                data: 'email=' + email + '&fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
+                  '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
+                  '&numItems=' + numProducts + '&amount=' + amount + '&productName=' + productName + '&graphic=' + graphic,
+                success: function(data) {
+                }
+              });
+            } else {
+              $.ajax({
+                type: 'POST',
+                url: 'submitOrder.php',
+                data: 'email=' + email + '&fname=' + fname + '&lname=' + lname + '&zip=' + zip + '&state=' + state +
+                  '&city=' + city + '&ccnumber=' + ccnumber + '&expDate=' + expDate + '&ccv=' + ccv +
+                  '&numItems=' + numProducts + '&amount=' + amount + '&productName=' + productName,
+                success: function(data) {
+                }
+              });
             }
-          });
+          }
+          window.location.href="clearCart.php";
         }
     });
   });
@@ -120,18 +155,28 @@ include("connection.php");
           </thead>
           <tbody>
             <?php
+            $total_amount = 0;
+            $count_items = 0;
             if(isset($_SESSION['cartItems'])) {
               foreach ($_SESSION['cartItems'] as $arr) {
-                foreach ($arr as $index=>$value) {
+                foreach ($arr as $count=>$value) {
                   echo '<tr>';
+                  echo '<script type="text/javascript">numProductsInCart++;</script>';
                   $index = 0;
+                  $count_items++;
                   foreach ($value as $k=>$v) {
                     $index++;
-                    if($index == 3) {
+                    if($index == 1) { // Gets the product name to save into orders
+                      echo '<input type="hidden" id="productName'.$count_items.'" value="'.$v.'" />';
+                    }
+                    else if($index == 3) { // Gets the number of products to save into orders
                       echo '<td class="text-center" style="vertical-align: middle;">
-                      <input type="number" class="form-control text-center" value="'.$v.'" />
+                      <input type="number" class="form-control text-center" id="numProducts'.$count_items.'" value="'.$v.'" />
                       </td>';
-
+                    }
+                    else if($index == 5) {
+                      $total_amount = $total_amount + $v;
+                      echo '<input type="hidden" id="amount'.$count_items.'" value="'.$v.'" />';
                     }
                     else if($index == 6) {
                       echo '<td class="text-center" style="vertical-align: middle;">
@@ -142,11 +187,13 @@ include("connection.php");
                       echo '<td class="text-center" style="vertical-align: middle;">
                       <img class="img-thumbnail img-cart" src='.$v.' />
                       </td>';
+                      echo '<input type="hidden" id="graphic'.$count_items.'" value="'.$v.'" />';
                     }
                     else if($index == 7 && $v == 'undefined') {
                       echo '<td class="text-center" style="vertical-align: middle;">
                       No Graphic Added
                       </td>';
+                      echo '<input type="hidden" id="graphic'.$count_items.'" value="'.$v.'" />';
                     }
                     else {
                       echo '<td class="text-center" style="vertical-align: middle;">
@@ -162,12 +209,47 @@ include("connection.php");
           </tbody>
         </table>
       </div>
+      <div class="panel-footer">
+        <div class="text-center">
+          <h4>Order Total: $<?php echo $total_amount; ?>.00</h4>
+        </div>
+      </div>
     </div>
 
     <div class="well">
+      <?php
+        if(!isset($_SESSION['email'])) {
+          echo '<div class="text-center">
+          <h4>Please <a href="login.php">Login</a> or <a href="register.php">Register</a> to submit this order!</h4>
+          </div>';
+        }
+      ?>
       <form class="form-horizontal" data-toggle="validator" role="form" id="information-form">
         <h4>Shipping Information:</h4>
         <hr />
+        <?php
+          if(isset($_SESSION['email'])) {
+            echo '<div class="form-group has-feedback">
+              <label for="email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" value="'.$_SESSION['email'].'" data-required-error=" " required>
+              </div>
+              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+              <div class="help-block with-errors text-center">
+              </div>
+            </div>';
+          } else {
+            echo '<div class="form-group has-feedback">
+              <label for="email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" data-required-error=" " required>
+              </div>
+              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+              <div class="help-block with-errors text-center">
+              </div>
+            </div>';
+          }
+        ?>
         <div class="form-group has-feedback">
           <label for="fname" class="col-sm-2 control-label">First Name</label>
           <div class="col-sm-10">
@@ -197,7 +279,7 @@ include("connection.php");
         </div>
         <div class="form-group has-feedback">
           <label for="zip" class="col-sm-2 control-label">ZIP</label>
-          <div class="col-sm-2">
+          <div class="col-sm-10">
             <input type="number" class="form-control" id="zip" data-required-error=" "
               required>
           </div>
@@ -230,7 +312,7 @@ include("connection.php");
         <div class="form-group has-feedback">
           <label for="ccnumber" class="col-md-2 control-label">Credit Card Number</label>
           <div class="col-md-4">
-            <input type="tel" class="form-control" id="ccnumber" name="ccnumber"
+            <input type="number" class="form-control" id="ccnumber" name="ccnumber"
               data-required-error=" " required>
           </div>
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -240,7 +322,7 @@ include("connection.php");
         <div class="form-group has-feedback">
           <label for="expDate" class="col-md-2 control-label">Expiration Date</label>
           <div class="col-md-4">
-            <input type="number" class="form-control" id="expDate" placeholder="MM/YY"
+            <input type="text" class="form-control" id="expDate" placeholder="MM/YY"
               data-required-error=" " required>
           </div>
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -260,8 +342,15 @@ include("connection.php");
       </form>
       <hr />
       <div class="row">
+        <hr />
         <div class="col-xs-8 col-xs-offset-2 text-center">
-          <button type="button" id="submit" class="btn btn-primary btn-block">Submit Order</button>
+          <?php
+            if(isset($_SESSION['email'])) {
+              echo '<button type="button" id="submit" class="btn btn-primary btn-block">Submit Order</button>';
+            } else {
+              echo '<button type="button" id="submit" class="btn btn-primary btn-block" disabled>Submit Order</button>';
+            }
+          ?>
         </div>
       </div>
     </div>

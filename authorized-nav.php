@@ -33,7 +33,7 @@ if(!isset($_SESSION))
         </li>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="reviews.html">Reviews</a></li>
-        <li><a href="">Cart</a></li>
+        <li><a href="orders.php">Orders</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
