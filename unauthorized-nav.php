@@ -28,7 +28,7 @@ if(!isset($_SESSION))
           <li><a href="sweatshirts.php">Sweatshirts</a></li>
         </ul>
         </li>
-        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
