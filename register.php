@@ -5,11 +5,7 @@ include("connection.php");
 <html>
 <head>
   <?php include("head.html"); ?>
-<<<<<<< HEAD
   <script type="text/javascript" src="lib/bootstrap-validator/dist/validator.min.js"></script>
-=======
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css"></script>
->>>>>>> 9ec74a311dd9fa4aaa1ba8d76d8ced06fee98842
 
   <script type="text/javascript">
     jQuery(document).ready(function($) {
