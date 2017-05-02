@@ -8,7 +8,7 @@
     $password = mysqli_real_escape_string($dbc, trim($_POST['password']));
     $success = false;
 
-    $sql = mysqli_query($dbc, "SELECT * FROM Accounts;");
+    $sql = mysqli_query($dbc, "SELECT * FROM accounts;");
     if(mysqli_num_rows($sql) != 0) {
       while($row = mysqli_fetch_array($sql)) {
         if($email == $row['email'] && $password == $row['password']) {
