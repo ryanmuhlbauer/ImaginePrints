@@ -54,7 +54,7 @@
 /* Carousel base class */
 .carousel {
   height: 40%;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
   border-radius: 20px;
 }
 /* Since positioning the image, we need to help out the caption */
