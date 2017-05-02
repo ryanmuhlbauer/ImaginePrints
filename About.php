@@ -26,7 +26,7 @@ include("connection.php");
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <img class="img-responsive img-border-left" src="/img/ClothesBanner.jpg" alt="Clothes Banner">
+                    <img class="img-responsive img-border-left" src="/img/ClothesBanner.jpg" alt="Clothes Banner" style="border-radius:50%;">
                 </div>
                 <div class="col-md-6">
                   	<p>Our mission is to serve our customers by creating your custom clothing fast and affordable while maintaining the highest possible quality. We strive for customer satisfaction, and our main goal is to ensure you're happy.</p>
@@ -47,31 +47,31 @@ include("connection.php");
                     <hr>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="/img/rm.jpg" alt="Ryan Muhlbauer">
+                    <img class="img-responsive" src="/img/rm.jpg" alt="Ryan Muhlbauer" style="border-radius:50%;">
                     <h3>Ryan Muhlbauer
                         <small>CEO</small>
                     </h3>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="/img/CC.jpg" alt="Chritopher Cates" >
+                    <img class="img-responsive" src="/img/CC.jpg" alt="Chritopher Cates" style="border-radius:50%;" >
                     <h3>Cody Cates
                         <small>CIO</small>
                     </h3>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="/img/tk.jpg" alt="Tabitha King">
+                    <img class="img-responsive" src="/img/tk.jpg" alt="Tabitha King" style="border-radius:50%;">
                     <h3>Tabitha King
                         <small>CFO</small>
                     </h3>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="/img/ds.jpg" alt="Dylan Smith">
+                    <img class="img-responsive" src="/img/ds.jpg" alt="Dylan Smith" style="border-radius:50%;">
                     <h3>Dylan Smith
                         <small>CMO</small>
                     </h3>
                 </div>
                  <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="/img/dog.jpg" alt="Dylan Smith">
+                    <img class="img-responsive" src="/img/dog.jpg" alt="Dogge" style="border-radius:50%;">
                     <h3>Doge
                         <small>CKO</small>
                     </h3>

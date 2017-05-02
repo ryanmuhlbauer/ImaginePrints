@@ -14,11 +14,11 @@ if(!isset($_SESSION))
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="index.html">Imagine Prints</a>
+          <a class="NavLogo" href="index.php" style="padding-left:7%;"><img src="/img/Logo.png" alt="Imagine Prints" width="80%" style="padding-left:-7%;"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.php">Home</a></li>
+        <li><a href="About.php">About Us</a></li>
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
         <ul class="dropdown-menu">

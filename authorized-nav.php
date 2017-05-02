@@ -5,21 +5,21 @@ if(!isset($_SESSION))
   }
 ?>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="color:black;">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" style="color:black;">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="index.php" style="padding-left:7%;"><img src="/img/Logo.png" alt="Imagine Prints"></a>
+        <a class="NavLogo" href="index.php" style="padding-left:7%;"><img src="/img/Logo.png" alt="Imagine Prints" width="80%" style="padding-left:-7%;"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" style="padding-right:20%; color:black;">
         <li>
-          <a href="index.php">Home</a>
+          <a href="About.php">About Us</a>
         </li>
         <li class="dropdown">
         <a href="products.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>

@@ -50,22 +50,22 @@ include("connection.php");
           <div class="container">
             <div class="carousel-caption">
               <h1>Want to try it out our design interface?</h1>
-              <p>It is super easy to use, and if you have any questions<br> feel free to reach out to us 24/7 with out Live Chat tool!</p>
-              <p><a class="btn btn-lg btn-primary" href="" role="button">Let's go!</a></p>
+              <p style="color:white;">It is super easy to use, and if you have any questions</br> feel free to reach out to us 24/7 by clicking <a href="contact.php">Here</a></p>
+              <p><a class="btn btn-lg btn-primary" href="products.php" role="button">Let's go!</a></p>
             </div>
           </div>
         </div>
         <div class="item">
           <div class="container">
             <div class="carousel-caption">
-              <h1>We Offer Free Two Week Shipping!</h1>
-              <h2>If Two Week Shipping Isn't Fast Enough
-                <br>We Offer Three More Options:</h2>
+              <h1>Free Two Week Shipping on All Orders!!</h1>
+              <h2>Free One Week Shipping on Orders of $100 or More!</h2>
                 <ul class="list-unstyled">
-                  <li><h3>One Week</h3></li>
-                  <li><h3>Three Day</h3></li>
-                  <li><h3>Two Day</h3></li>
+                  <li><h3>Expedited Shipping Options:</h3></li>
+                  <li><h3>Two and Three Day Shipping</h3></li>
                 </ul>
+                </br>
+                </br>
               </div>
             </div>
           </div>
@@ -81,34 +81,44 @@ include("connection.php");
       </div><!-- /.carousel -->
       <div class="container marketing">
         <div class="row">
-          <div class="col-lg-4">
+            <div class="col-lg-4">
             <img class="img-rectangle" src="img/BusinessPartners.jpe" alt="Business Partners Mate?" height="140">
             <h2>Business Partners</h2>
             <p>Are you looking to start your own clothing business? Check out our business to business to program for more information.</p>
-            <p><a class="btn btn-default" href="" role="button">Watch a video &raquo;</a></p>
+            <p><a class="btn btn-default" href="contact.php" role="button">Click Here &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-
             <img class="img-rectangle" src="/img/categories/shirts.jpg" alt="T-Shirt Template" height="140">
             <h2>Already have a design?</h2>
             <p>Upload your own designs and get started creating your own custom clothing.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="products.php" role="button">View details &raquo;</a></p>
+          </div>
+           <div class="col-lg-4">
+            <img class="img-rectangle" src="img/shipping.jpe" alt="Shipping" height="140">
+            <h2>Need Faster Shipping?</h2>
+            <p>We offer expedited shipping options of two or three day shipping and guarantee your order will be there on time! Check out our reviews if you don't believe us.</p>
+            <p><a class="btn btn-default" href="reviews.php" role="button">See Reviews &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <img class="img-rectangle" src="img/question.png" alt="" height="140">
+            <img class="img-rectangle" src="img/question.png" alt="Question" height="140">
             <h2>Have a question or problem?</h2>
             <p>We are available 24/7 to answer any questions and solve all problems.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="contact.php" role="button">Go Here &raquo;</a></p>
           </div>
-          <div class="col-lg-4">
-            <img class="img-rectangle" src="img/quality.jpe" alt="Quality Matters" height="140">
-            <h2>We only believe in high quality</h2>
-            <p>We want our customers to be able to wear their clothing for years to come. Low quality materials simply don't meet the cut for us.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+           <div class="col-lg-4">
+            <img class="img-rectangle" src="img/AboutUs.jpg" alt="About Us" height="140">
+            <h2>Want to learn more about us?</h2>
+            <p>We are an open book and are happy to share our story. Check out our about page for more information and if you have any direct questions, feel free to <a href="contact.php">email</a>.</p>
+            <p><a class="btn btn-default" href="About.php" role="button">About Us &raquo;</a></p>
+          </div>
+           <div class="col-lg-4">
+            <img class="img-rectangle" src="img/Privacy.jpg" alt="Privacy" height="140">
+            <h2>Your privacy is important to us!</h2>
+            <p>We will not sell your data to third party vendors! We are all about you and we don't want you to worry about your privacy. Want to learn more? Read our very boring privacy page</p>
+            <p><a class="btn btn-default" href="privacy.php" role="button">Go Here &raquo;</a></p>
           </div>
         </div>
-
-
+	</br>	
         <!-- FOOTER -->
         <footer>
           <p class="pull-right"><a href="#">Back to top</a></p>
