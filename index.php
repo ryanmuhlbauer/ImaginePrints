@@ -5,7 +5,11 @@ include("connection.php");
 <html>
 <head>
   <?php include("head.html"); ?>
+<<<<<<< HEAD
   <link href="css/carousel.css" rel="stylesheet" />
+=======
+  <link href="/css/carousel.css" rel="stylesheet" />
+>>>>>>> 9ec74a311dd9fa4aaa1ba8d76d8ced06fee98842
 
 </head>
 <body>
@@ -31,16 +35,25 @@ include("connection.php");
         <div class="item active">
           <div class="container">
             <div class="carousel-caption">
+<<<<<<< HEAD
               <h1>We bring your custom designs to life on clothing.</h1>
               <p>Check out our variety of clothing mediums</p>
+=======
+              <h2>We bring your custom designs to life on clothing.</h2>
+              <h3>Check out our variety of clothing mediums</h3>
+>>>>>>> 9ec74a311dd9fa4aaa1ba8d76d8ced06fee98842
               <ul class="list-unstyled">
                 <li>Short and Long Sleeved T-Shirts</li>
                 <li>Hoodies and Jackets</li>
                 <li>Socks, Hats and More</li>
               </ul>
               <p>
+<<<<<<< HEAD
                 <a class="btn btn-lg btn-primary" href="" role="button">Pricing Details</a>
                 <a class="btn btn-lg btn-primary" href="" role="button">Reviews</a>
+=======
+                <a class="btn btn-lg btn-primary" href="products.php" role="button">All Products</a>
+>>>>>>> 9ec74a311dd9fa4aaa1ba8d76d8ced06fee98842
               </p>
             </div>
           </div>
@@ -87,7 +100,11 @@ include("connection.php");
             <p><a class="btn btn-default" href="" role="button">Watch a video &raquo;</a></p>
           </div>
           <div class="col-lg-4">
+<<<<<<< HEAD
             <img class="img-rectangle" src="img/template2.png" alt="T-Shirt Template" height="140">
+=======
+            <img class="img-rectangle" src="/img/categories/shirts.jpg" alt="T-Shirt Template" height="140">
+>>>>>>> 9ec74a311dd9fa4aaa1ba8d76d8ced06fee98842
             <h2>Already have a design?</h2>
             <p>Upload your own designs and get started creating your own custom clothing.</p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -110,7 +127,11 @@ include("connection.php");
         <!-- FOOTER -->
         <footer>
           <p class="pull-right"><a href="#">Back to top</a></p>
+<<<<<<< HEAD
           <p>&copy; 2016 Imagine Prints LLC. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+=======
+          <p>&copy; 2016 Imagine Prints LLC. &middot; <a href="privacy.php">Privacy</a> &middot; <a href="terms.php">Terms</a></p>
+>>>>>>> 9ec74a311dd9fa4aaa1ba8d76d8ced06fee98842
         </footer>
 
       </div><!-- /.container -->
