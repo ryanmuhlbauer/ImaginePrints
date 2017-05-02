@@ -57,7 +57,7 @@ include("connection.php");
   <?php include("unauthorized-nav.php"); ?>
 
   <div class="container">
-    <div class="panel panel-default authorize-panel" >
+    <div class="panel panel-primary authorize-panel" >
       <div class="panel-heading">
         Login Form
       </div>
