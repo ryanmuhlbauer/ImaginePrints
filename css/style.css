@@ -1,0 +1,32 @@
+.authorize-panel {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.bg-faded {
+  background-color: #eee !important;
+}
+.h3 {
+  font-size: 2rem !important;
+}
+.btn-label {
+  cursor: pointer !important;
+}
+.canvas-container {
+  margin: auto !important;
+}
+.btn-bottom {
+  margin-top: 10px !important;
+}
+.hidden {
+  display: none !important;
+}
+.form-control-feedback {
+  top: 0px !important;
+}
+.img-cart {
+  width: 72px;
+  height: 72px;
+}
+.secondary {
+  color: #18bc9c !important;
+}
