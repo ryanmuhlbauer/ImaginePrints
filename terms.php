@@ -78,7 +78,7 @@ include("connection.php");
     <li><strong>Governing Law &amp; Jurisdiction</strong></li>
 </ol>
 <p>These Terms will be governed by and interpreted in accordance with the laws of the State of Georgia, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Georgia for the resolution of any disputes.</p>
-<p>These terms and conditions have been generated at <a href="https://termsandcondiitionssample.com/" target="_blank">termsandcondiitionssample.com</a>.</p>
+
 
   <?php include("scripts.html"); ?>
 </body>
