@@ -172,14 +172,14 @@ include("connection.php");
                 <option>Connecticut</option>
                 <option>Delaware</option>
                 <option>District of Columbia</option>
-                <option> Florida</option>
+                <option>Florida</option>
                 <option>Georgia</option>
                 <option>Hawaii</option>
-                <option>daho</option>
+                <option>Idaho</option>
                 <option>Illinois</option>
                 <option>Indiana</option>
                 <option>Iowa</option>
-                <option> Kansas</option>
+                <option>Kansas</option>
                 <option>Kentucky</option>
                 <option>Louisiana</option>
                 <option>Maine</option>
